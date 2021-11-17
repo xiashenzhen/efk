@@ -17,7 +17,7 @@ spec:
       serviceAccount: nfs-provisioner
       containers:
         - name: nfs-provisioner
-          image: registry.cn-hangzhou.aliyuncs.com/open-ali/nfs-client-provisioner:latest
+          image: docker.terraqt.io/efk/registry.cn-hangzhou.aliyuncs.com/open-ali/nfs-client-provisioner:latest
           imagePullPolicy: IfNotPresent
           volumeMounts:
             - name: nfs-client-root
@@ -26,11 +26,11 @@ spec:
             - name: PROVISIONER_NAME
               value: example.com/nfs
             - name: NFS_SERVER
-              value: 192.168.0.6
+              value: 10.100.11.81
             - name: NFS_PATH
-              value: /data/v1
+              value: /nfs
       volumes:
         - name: nfs-client-root
           nfs:
-            server: 192.168.0.6
-            path: /data/v1
+            server: 10.100.11.81
+            path: /nfs
